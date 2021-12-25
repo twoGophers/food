@@ -280,8 +280,8 @@
 
     <div id="modal" class="modal">
         <div class="modal__dialog">
-            <div class="modal__content">
-                <form action="#">
+            <div id="modal__content" class="modal__content">
+                <form action="#" class="modal__form">
                     <div class="modal__close" data-close>&times;</div>
                     <div class="modal__title">Мы свяжемся с вами как можно быстрее!</div>
                     <input required id="modal_name" placeholder="Ваше имя" name="name" type="text" class="modal__input">
@@ -290,7 +290,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    
 
     <script type="module">
     // Import the functions you need from the SDKs you need
@@ -324,7 +324,6 @@
         let modal_phone = document.getElementById('modal_phone');
         let modal_sub = document.getElementById('modal_sub');
         let modal = document.getElementById('modal');
-        let modal__dialog = document.querySelector('.modal__dialog');
 
         modal_sub.addEventListener('click', (e) => {
             
@@ -341,30 +340,21 @@
                 console.log(error);
             })
 
+            if(modal_name.value != '' && modal_phone.value != '') {
+                modal_name.value = '';
+                modal_phone.value = '';
+                modal.classList.add('hide');
+            }
 
-           if(modal_name.value != '' && modal_phone.value != '') {
-                 let div = document.createElement('div').className('submitForm');
-                 let submitForm = document.querySelector('.submitForm');
-                 submitForm.style.cssText = `
-                display: block;
-                margin: 0 auto;
-                `;
+            
+        });
 
-                div.thanksModal.innerHTML = `
-                    <div class="modal__content">
-                        <div class="modal__close" data-close>&times;</div>
-                        <div class="modal__title">Спасибо, мы с вами свяжемся</div>
-                    </div>
-                    `;
-
-           }
-        })
+        
 
         
     </script>
 
     <script src="../js/bundle.js"></script>
-    <script src="./js/bundle.js"></script>
 </body>
 
 </html>
